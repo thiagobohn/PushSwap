@@ -11,7 +11,8 @@ CFLAGS	:= -Wextra -Wall -Werror
 HEADER			:=	push_swap.h
 MANDATORY_NAME	:=	push_swap
 MANDATORY_SRCS	:=	push_swap.c \
-					error_handler.c
+					error_handler.c \
+					lists_handler.c
 MANDATORY_OBJS	:=	$(MANDATORY_SRCS:.c=.o)
 
 BONUS_NAME		:=	server_bonus
