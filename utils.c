@@ -1,47 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 09:51:45 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/03/28 17:24:43 by tbohn-co         ###   ########.fr       */
+/*   Created: 2024/03/28 16:26:53 by tbohn-co          #+#    #+#             */
+/*   Updated: 2024/03/28 17:09:20 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-void	ft_args_check(int argc, char **argv)
+int	ft_atoi(const char *nptr)
 {
-	int		i;
-	char	*arg;
+	int	i;
+	int	signal;
+	int	result;
 
-	if (argc < 2)
-		ft_error_handler(1);
 	i = 0;
-	while (argv[++i])
+	signal = 1;
+	result = 0;
+	while (nptr[i] && (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13)))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		arg = argv[i];
-		if (*arg == '-')
-			arg++;
-			if (ft_isdigit(*arg))
-				arg++;
-			else
-				ft_error_handler(1);
-		while (*arg)
-		{
-			if (ft_isdigit(*arg))
-				arg++;
-			else
-				ft_error_handler(1);
-		}
+		if (nptr[i] == '-')
+			signal *= -1;
+		i++;
 	}
+	while (nptr[i] && ft_isdigit(nptr[i]))
+	{
+		result = result * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (result * signal);
 }
 
-void	ft_error_handler(int error)
+int	ft_isdigit(int c)
 {
-	if (error == 1)
-		write(STDERR_FILENO, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
