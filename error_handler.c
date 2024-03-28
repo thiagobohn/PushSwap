@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:51:45 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/03/28 17:24:43 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:27:33 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void	ft_args_check(int argc, char **argv)
 	{
 		arg = argv[i];
 		if (*arg == '-')
+		{
 			arg++;
 			if (ft_isdigit(*arg))
 				arg++;
 			else
 				ft_error_handler(1);
+		}
 		while (*arg)
 		{
 			if (ft_isdigit(*arg))
