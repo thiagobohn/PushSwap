@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:51:51 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/03/28 16:23:04 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:39:51 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,47 @@ void	ft_destroy_list(t_list **list_ref)
 	list_ref = NULL;
 }
 
-void	ft_add_begin(t_list *list, int val)
+void	ft_add(t_list *list, int val, int position)
 {
 	t_node	*new;
 
 	new = ft_create_node(val);
-	new->next = list->begin;
-	if (list->begin == NULL)
-		list->end = new;
+	if (position == FIRST)
+	{
+		new->next = list->begin;
+		if (list->begin == NULL)
+			list->end = new;
+		else
+			list->begin->prev = new;
+		list->begin = new;
+	}
 	else
-		list->begin->prev = new;
-	list->begin = new;
+	{
+		new->prev = list->end;
+		if (list->begin == NULL)
+			list->begin = new;
+		else
+			list->end->next = new;
+		list->end = new;
+	}
 }
 
-void	ft_remove_first(t_list *list)
+void	ft_remove(t_list *list, int position)
 {
 	t_node	*aux;
 
-	aux = list->begin->next;
-	aux->prev = NULL;
-	free(list->begin);
-	list->begin = aux;
+	if (position == FIRST)
+	{
+		aux = list->begin->next;
+		aux->prev = NULL;
+		free(list->begin);
+		list->begin = aux;
+	}
+	else
+	{
+		aux = list->end->prev;
+		aux->next = NULL;
+		free(list->end);
+		list->end = aux;
+	}
 }

@@ -6,7 +6,7 @@
 #    By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 09:51:57 by tbohn-co          #+#    #+#              #
-#    Updated: 2024/03/28 17:14:27 by tbohn-co         ###   ########.fr        #
+#    Updated: 2024/04/01 16:52:52 by tbohn-co         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ MANDATORY_NAME	:=	push_swap
 MANDATORY_SRCS	:=	push_swap.c \
 					error_handler.c \
 					lists_handler.c \
-					utils.c
+					utils.c \
+					movements1.c \
+					movements2.c
 MANDATORY_OBJS	:=	$(MANDATORY_SRCS:.c=.o)
 
 BONUS_NAME		:=	server_bonus
