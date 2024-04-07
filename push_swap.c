@@ -6,14 +6,14 @@
 /*   By: srmeneses <srmeneses@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:01 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/04/07 16:26:19 by srmeneses        ###   ########.fr       */
+/*   Updated: 2024/04/07 18:05:31 by srmeneses        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
 static t_list	*ft_create_a(char **input_a);
-static void		ft_push_swap(t_node *a, t_node *b);
+static void		ft_push_swap(t_list *a, t_list *b);
 static void		ft_check_sort(t_list *list);
 void			ft_print_list(t_list *list);//////////////////
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		a = ft_create_a(argv);
 		ft_check_sort(a);
 		b = ft_create_list();
-		ft_push_swap(a->begin, b->begin);
+		ft_push_swap(a, b);
 		ft_destroy_list(&a);
 		ft_destroy_list(&b);
 	}
@@ -67,23 +67,29 @@ static void		ft_check_sort(t_list *list)
 	exit(EXIT_SUCCESS);
 }
 
-static void	ft_push_swap(t_node *a, t_node *b)
+static void	ft_push_swap(t_list *a, t_list *b)
 {
 	int		max;
 	t_node	*aux_a;
 
-	max = a->val;
-	while (a != NULL)
+	while (a->size > 0)
 	{
-		aux_a = a->next;
+		max = a->begin->val;
+		aux_a = a->begin->next;
 		while (aux_a != NULL)
 		{
 			if (aux_a->val > max)
 				max = aux_a->val;
 			aux_a = aux_a->next;
 		}
-		a = a->next;
+		while (a->begin->val != max)
+		{
+			ft_rotate(a, 'a');
+		}
+		ft_push(a, b, 'a');
 	}
+	while (b->size > 0)
+		ft_push(b, a, 'b');
 }
 
 void	ft_print_list(t_list *list)///////////////

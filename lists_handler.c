@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srmeneses <srmeneses@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:51:51 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/04/01 16:39:51 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:40:29 by srmeneses        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_list	*ft_create_list(void)
 	list = (t_list *)malloc(1 * sizeof(t_list));
 	list->begin = NULL;
 	list->end = NULL;
+	list->size = 0;
 	return (list);
 }
 
@@ -74,6 +75,7 @@ void	ft_add(t_list *list, int val, int position)
 			list->end->next = new;
 		list->end = new;
 	}
+	list->size++;
 }
 
 void	ft_remove(t_list *list, int position)
@@ -94,4 +96,5 @@ void	ft_remove(t_list *list, int position)
 		free(list->end);
 		list->end = aux;
 	}
+	list->size--;
 }
