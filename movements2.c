@@ -17,14 +17,14 @@ void	ft_reverse_rotate(t_list *list, char stack)
 	ft_add(list, list->end->val, FIRST);
 	ft_remove(list, LAST);
 	if (stack == 'a')
-		write(STDOUT_FILENO, "rra", 3);
+		write(STDOUT_FILENO, "rra\n", 4);
 	else if (stack == 'b')
-		write(STDOUT_FILENO, "rrb", 3);
+		write(STDOUT_FILENO, "rrb\n", 4);
 }
 
 void	ft_rrr(t_list *a, t_list*b)
 {
 	ft_reverse_rotate(a, 'r');
 	ft_reverse_rotate(b, 'r');
-	write(STDOUT_FILENO, "rrr", 3);
+	write(STDOUT_FILENO, "rrr\n", 4);
 }

@@ -6,14 +6,14 @@
 /*   By: srmeneses <srmeneses@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:01 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/04/02 19:33:52 by srmeneses        ###   ########.fr       */
+/*   Updated: 2024/04/07 16:26:19 by srmeneses        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
 static t_list	*ft_create_a(char **input_a);
-// static void		ft_push_swap(t_list *a, t_list *b);
+static void		ft_push_swap(t_node *a, t_node *b);
 static void		ft_check_sort(t_list *list);
 void			ft_print_list(t_list *list);//////////////////
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		a = ft_create_a(argv);
 		ft_check_sort(a);
 		b = ft_create_list();
-		// ft_push_swap(a, b);
+		ft_push_swap(a->begin, b->begin);
 		ft_destroy_list(&a);
 		ft_destroy_list(&b);
 	}
@@ -64,16 +64,27 @@ static void		ft_check_sort(t_list *list)
 		else
 			current = current->next;
 	}
-	printf("já está ordenado\n");
+	exit(EXIT_SUCCESS);
 }
 
-// static void	ft_push_swap(t_list *a, t_list *b)
-// {
-// 	while (a != NULL)
-// 	{
-		
-// 	}
-// }
+static void	ft_push_swap(t_node *a, t_node *b)
+{
+	int		max;
+	t_node	*aux_a;
+
+	max = a->val;
+	while (a != NULL)
+	{
+		aux_a = a->next;
+		while (aux_a != NULL)
+		{
+			if (aux_a->val > max)
+				max = aux_a->val;
+			aux_a = aux_a->next;
+		}
+		a = a->next;
+	}
+}
 
 void	ft_print_list(t_list *list)///////////////
 {
