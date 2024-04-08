@@ -6,7 +6,7 @@
 /*   By: srmeneses <srmeneses@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:51:51 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/04/07 17:40:29 by srmeneses        ###   ########.fr       */
+/*   Updated: 2024/04/08 18:47:21 by srmeneses        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_add(t_list *list, int val, int position)
 	if (position == FIRST)
 	{
 		new->next = list->begin;
-		if (list->begin == NULL)
+		if (list->size == 0)
 			list->end = new;
 		else
 			list->begin->prev = new;
@@ -69,32 +69,42 @@ void	ft_add(t_list *list, int val, int position)
 	else
 	{
 		new->prev = list->end;
-		if (list->begin == NULL)
+		if (list->size == 0)
 			list->begin = new;
 		else
 			list->end->next = new;
 		list->end = new;
 	}
 	list->size++;
+	// printf("Lista: beg:%p end:%p size:%d\n", list->begin, list->end, list->size);
+	// printf("Nó: endereço:%p prev:%p next:%p\n", new, new->prev, new->next);
 }
 
 void	ft_remove(t_list *list, int position)
 {
 	t_node	*aux;
 
-	if (position == FIRST)
+	if (list->size == 1)
 	{
-		aux = list->begin->next;
-		aux->prev = NULL;
 		free(list->begin);
-		list->begin = aux;
+		list->begin = NULL;
 	}
 	else
 	{
-		aux = list->end->prev;
-		aux->next = NULL;
-		free(list->end);
-		list->end = aux;
+		if (position == FIRST)
+		{	
+			aux = list->begin->next;
+			aux->prev = NULL;
+			free(list->begin);
+			list->begin = aux;
+		}
+		else
+		{
+			aux = list->end->prev;
+			aux->next = NULL;
+			free(list->end);
+			list->end = aux;
+		}	
 	}
 	list->size--;
 }
