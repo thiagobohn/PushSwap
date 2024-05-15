@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srmeneses <srmeneses@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:51:21 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/04/08 18:58:38 by srmeneses        ###   ########.fr       */
+/*   Updated: 2024/04/15 12:37:04 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	ft_push(t_list *l1, t_list *l2, char stack)
 	ft_add(l2, l1->begin->val, FIRST);
 	ft_remove(l1, FIRST);
 	if (stack == 'a')
-		printf("pa\n");
+		printf("pb\n");
 		// write(STDOUT_FILENO, "pa\n", 3);
 	else
-		printf("pb\n");
+		printf("pa\n");
 		// write(STDOUT_FILENO, "pb\n", 3);
 }
 

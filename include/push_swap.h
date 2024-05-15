@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srmeneses <srmeneses@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:05 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/04/02 19:11:29 by srmeneses        ###   ########.fr       */
+/*   Updated: 2024/05/15 11:21:57 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 typedef struct s_node
 {
 	int				val;
+	int				index;
+	int				pos;
+	int				target_pos;
+	int				cost_a;
+	int				cost_b;
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
@@ -35,8 +40,8 @@ typedef struct s_list
 	int				size;
 }	t_list;
 
-void		ft_error_handler(int error, t_list *list);
-void		ft_validet_nbr(t_list *list, t_list *repeat, char *nbr_cadidate);
+void		ft_error_handler(int error, t_list *repeated);
+void		ft_validet_nbr(t_list *list, char *nbr_cadidate);
 
 t_node		*ft_create_node(int val);
 t_list		*ft_create_list(void);

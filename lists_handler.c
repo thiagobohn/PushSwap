@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srmeneses <srmeneses@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:51:51 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/04/08 18:47:21 by srmeneses        ###   ########.fr       */
+/*   Updated: 2024/05/15 12:54:19 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@ t_node	*ft_create_node(int val)
 	t_node	*node;
 
 	node = malloc(1 * sizeof(t_node));
+	node->val = val;
+	node->index = 0;
+	node->pos = 0;
+	node->target_pos = 0;
+	node->cost_a = 0;
+	node->cost_a = 0;
 	node->prev = NULL;
 	node->next = NULL;
-	node->val = val;
 	return (node);
 }
 
