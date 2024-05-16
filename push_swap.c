@@ -5,105 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 09:52:01 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/15 15:53:19 by tbohn-co         ###   ########.fr       */
+/*   Created: 2024/05/16 13:55:58 by tbohn-co          #+#    #+#             */
+/*   Updated: 2024/05/16 15:39:05 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
 
-static t_list	*ft_create_a(char **input_a);
-//static void		ft_push_swap(t_list *a, t_list *b);
-static void		ft_check_sort(t_list *list);
-void			ft_print_list(t_list *list);//////////////////
-
-int	main(int argc, char **argv)
+void	ft_sort3(t_list *list)
 {
-	t_list	*a;
-	t_list	*b;
+	int	n1;
+	int	n2;
+	int	n3;
 
-	if (argc > 1)
+	n1 = list->begin->val;
+	n2 = list->begin->next->val;
+	n3 = list->end->val;
+	if (n1 < n2 && n2 > n3)
 	{
-		a = ft_create_a(argv);
-		ft_check_sort(a);
-		
-		b = ft_create_list();
-		//printf("a:\n");
-		//ft_print_list(a);
-		//printf("\n");
-		// ft_push_swap(a, b);
-		//printf("a:\n");
-		//ft_print_list(a);
-		//printf("\n");
-		ft_destroy_list(&a);
-		ft_destroy_list(&b);
+		ft_reverse_rotate(list, 'a');
+		if(n1 < n3)
+			ft_swap(list, 'a');
 	}
 	else
-		ft_error_handler(1, NULL);
-}
-
-static t_list	*ft_create_a(char **input_a)
-{
-	int			i;
-	t_list		*list;
-
-	list = ft_create_list();
-	i = 0;
-	while (input_a[++i])
 	{
-		ft_validet_nbr(list, input_a[i]);
-	}
-	return (list);
-}
-
-static void		ft_check_sort(t_list *list)
-{
-	t_node *current;
-
-	current = list->begin;
-	while (current->next != NULL)
-	{
-		if (current->val > current->next->val)
-			return ;
+		if (n1 > n3)
+		{
+			ft_rotate(list, 'a');
+			if (n2 > n3)
+				ft_swap(list, 'a');
+		}
 		else
-			current = current->next;
+			ft_swap(list, 'a');
 	}
-	exit(EXIT_SUCCESS);
 }
 
-// static void	ft_push_swap(t_list *a, t_list *b)
-// {
-// 	int		max;
-// 	t_node	*aux_a;
-
-// 	while (a->size > 0)
-// 	{
-// 		max = a->begin->val;
-// 		aux_a = a->begin->next;
-// 		while (aux_a != NULL)
-// 		{
-// 			if (aux_a->val > max)
-// 				max = aux_a->val;
-// 			aux_a = aux_a->next;
-// 		}
-// 		while (a->begin->val != max)
-// 		{
-// 			ft_rotate(a, 'a');
-// 		}
-// 		ft_push(a, b, 'a');
-// 	}
-// 	while (b->size > 0)
-// 		ft_push(b, a, 'b');
-// }
-
-void	ft_print_list(t_list *list)///////////////
+void	ft_push_swap(t_list *a, t_list *b)
 {
-	t_node	*aux;
-
-	aux = list->begin;
-	while (aux != NULL)
-	{
-		printf("%d ", aux->val);
-		aux = aux->next;
-	}
-}////////////////
+	while (a->size > 3)
+		ft_push(a, b, 'b');
+	ft_sort3(a);
+}

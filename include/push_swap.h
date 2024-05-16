@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:05 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/15 11:21:57 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:41:32 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 # define FIRST 1
 # define LAST 0
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 typedef struct s_node
 {
@@ -40,6 +42,9 @@ typedef struct s_list
 	int				size;
 }	t_list;
 
+void		ft_push_swap(t_list *a, t_list *b);
+void		ft_sort3(t_list *list);
+
 void		ft_error_handler(int error, t_list *repeated);
 void		ft_validet_nbr(t_list *list, char *nbr_cadidate);
 
@@ -48,6 +53,7 @@ t_list		*ft_create_list(void);
 void		ft_destroy_list(t_list **list_ref);
 void		ft_add(t_list *list, int val, int position);
 void		ft_remove(t_list *list, int position);
+void		ft_assigning_indexes(t_list *list);
 
 long int	ft_atoi(const char *nbr);
 int			ft_isdigit(int c);

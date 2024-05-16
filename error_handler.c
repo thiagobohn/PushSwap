@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:51:45 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/15 11:24:44 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:32:52 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_validet_nbr(t_list *a, char *nbr_cadidate)
 	if (ft_is_nbr(nbr_cadidate))
 	{
 		nbr = ft_atoi(nbr_cadidate);
-		if ((nbr < 2147483647) && (nbr > -2147483648))
+		if ((nbr < INT_MAX) && (nbr > INT_MIN))
 			ft_repeated_nbr(a, nbr);
 		else
 			ft_error_handler(2, a);
