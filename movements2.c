@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:18:48 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/16 14:40:10 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:07:25 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	ft_reverse_rotate(t_list *list, char stack)
 {
-	ft_add(list, list->end->val, FIRST);
-	ft_remove(list, LAST);
+	t_node	*node;
+
+	node = list->end;
+	list->end = list->end->prev;
+	list->end->next = NULL;
+	node->next = list->begin;
+	node->prev = NULL;
+	list->begin->prev = node;
+	list->begin = node;
 	if (stack == 'a')
 		write(STDOUT_FILENO, "rra\n", 4);
 	else if (stack == 'b')

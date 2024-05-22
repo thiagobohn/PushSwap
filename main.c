@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:01 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/16 15:42:27 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/22 11:29:19 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_print_list(t_list *list)///////////////
 	aux = list->begin;
 	while (aux != NULL)
 	{
-		printf("%d , %d |", aux->index, aux->val);
+		printf("%d , %d , %d |", aux->pos, aux->index, aux->val);
 		aux = aux->next;
 	}
 }////////////////
