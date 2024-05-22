@@ -28,6 +28,8 @@ int	ft_calculating_costs(t_list *a, t_list *b)
 	{
 		ft_define_node_costs(a, node_b, b->size);
 		cost = ft_define_total_cost(node_b);
+		if (cost == 0)
+			return (node_b->pos);
 		if (cost < cheaper)
 		{
 			cheaper = cost;
