@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:05 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/22 11:27:29 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:13:59 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_list
 
 void		ft_push_swap(t_list *a, t_list *b);
 void		ft_sort3(t_list *list);
+int			ft_calculating_costs(t_list *a, t_list *b);
 
 void		ft_error_handler(int error, t_list *repeated);
 void		ft_validet_nbr(t_list *list, char *nbr_cadidate);
@@ -60,7 +61,7 @@ int			ft_isdigit(int c);
 
 void		ft_swap(t_list *list, char stack);
 void		ft_ss(t_list *a, t_list *b);
-//////////////push do l1 pro l2, ex: ft_push(a, b, 'b');
+//////////////push do l1 pro l2, ex: ft_push(a, b, 'b');///////////////
 void		ft_push(t_list *l1, t_list *l2, char stack);
 void		ft_rotate(t_list *list, char stack);
 void		ft_rr(t_list *a, t_list*b);

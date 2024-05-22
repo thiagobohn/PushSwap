@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:01 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/22 13:19:28 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:28:17 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static t_list	*ft_create_a(char **input_a);
 static void		ft_is_easy_to_solve(t_list *list);
 static void		ft_is_sorted(t_list *list);
 void			ft_print_list(t_list *list);//////////////////
+void			ft_print_cost(t_list *list);//////////////////
 
 int	main(int argc, char **argv)
 {
@@ -40,6 +41,8 @@ int	main(int argc, char **argv)
 		printf("\n");///////////
 		printf("b:\n");/////////
 		ft_print_list(b);///////
+		printf("\n");///////////
+		ft_print_cost(b);///////
 		printf("\n");///////////
 		ft_destroy_list(&a);
 		ft_destroy_list(&b);
@@ -99,6 +102,18 @@ void	ft_print_list(t_list *list)///////////////
 	while (aux != NULL)
 	{
 		printf("%d , %d , %d , %d |", aux->target_pos, aux->pos, aux->index, aux->val);
+		aux = aux->next;
+	}
+}////////////////
+
+void	ft_print_cost(t_list *list)///////////////
+{
+	t_node	*aux;
+
+	aux = list->begin;
+	while (aux != NULL)
+	{
+		printf("    %d , %d     |", aux->cost_a, aux->cost_b);
 		aux = aux->next;
 	}
 }////////////////

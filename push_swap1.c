@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:55:58 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/22 14:46:15 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:18:14 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_push_swap(t_list *a, t_list *b)
 	ft_calculat_position(a);
 	ft_calculat_position(b);
 	ft_define_targets(a, b);
+	ft_calculating_costs(a, b);
 }
 
 static void	ft_calculat_position(t_list *list)

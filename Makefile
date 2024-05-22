@@ -6,7 +6,7 @@
 #    By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 09:51:57 by tbohn-co          #+#    #+#              #
-#    Updated: 2024/05/16 13:55:50 by tbohn-co         ###   ########.fr        #
+#    Updated: 2024/05/22 15:02:15 by tbohn-co         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ HEADER_PATH	:=./include/
 HEADER			:=	$(HEADER_PATH)push_swap.h
 MANDATORY_NAME	:=	push_swap
 MANDATORY_SRCS	:=	main.c \
-					push_swap.c \
+					push_swap1.c \
+					push_swap2.c \
 					error_handler.c \
 					lists_handler1.c \
 					lists_handler2.c \
