@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:01:49 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/22 19:04:59 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:04:23 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	ft_define_node_costs(t_list *list_a, t_node *node_b, int size_b);
 static int	ft_define_total_cost(t_node *node);
+static void	ft_actions_with_cost_a_positive(t_list *a, t_list *b, t_node *node);
 
 int	ft_calculating_costs(t_list *a, t_list *b)
 {
@@ -87,4 +88,41 @@ static int	ft_define_total_cost(t_node *node)
 		else
 			return (node->cost_b - node->cost_a);
 	}
+}
+
+void	ft_execute_action_sequence(t_list *a, t_list *b, int pos)
+{
+	t_node	*node;
+
+	node = b->begin;
+	while (node->pos != pos)
+		node = node->next;
+	while (node->cost_a != 0 || node->cost_b != 0)
+	{
+		if (node->cost_a > 0)
+			ft_actions_with_cost_a_positive(a, b, node);
+		else if (node->cost_a < 0)
+			ft_actions_with_cost_a_negative(a, b, node);
+		else
+			ft_actions_moving_only_b(b, node);
+	}
+	ft_push(b, a, 'a');
+}
+
+static void	ft_actions_with_cost_a_positive(t_list *a, t_list *b, t_node *node)
+{
+	if (node->cost_b > 0)
+	{
+		ft_rr(a, b);
+		node->cost_b--;
+	}
+	else if (node->cost_b < 0)
+	{
+		ft_rotate(a, 'a');
+		ft_reverse_rotate(b, 'b');
+		node->cost_b++;
+	}
+	else
+		ft_rotate(a, 'a');
+	node->cost_a--;
 }

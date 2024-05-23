@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:51:45 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/16 12:32:52 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:11:15 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_validet_nbr(t_list *a, char *nbr_cadidate)
 
 static int	ft_is_nbr(char *arg)
 {
-	if (*arg == '-')
+	if (*arg == '-' || *arg == '+')
 	{
 		arg++;
 		if (ft_isdigit(*arg))
@@ -53,7 +53,7 @@ static int	ft_is_nbr(char *arg)
 
 static void	ft_repeated_nbr(t_list *a, int nbr)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = a->begin;
 	while (new != NULL)

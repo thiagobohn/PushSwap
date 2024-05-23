@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:52:01 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/22 18:28:17 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:11:41 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static t_list	*ft_create_a(char **input_a);
 static void		ft_is_easy_to_solve(t_list *list);
-static void		ft_is_sorted(t_list *list);
-void			ft_print_list(t_list *list);//////////////////
-void			ft_print_cost(t_list *list);//////////////////
 
 int	main(int argc, char **argv)
 {
@@ -29,21 +26,7 @@ int	main(int argc, char **argv)
 		ft_is_easy_to_solve(a);
 		ft_assigning_indexes(a);
 		b = ft_create_list();
-		printf("a:\n");/////////
-		ft_print_list(a);///////
-		printf("\n");///////////
-		printf("b:\n");/////////
-		ft_print_list(b);///////
-		printf("\n");///////////
 		ft_push_swap(a, b);
-		printf("a:\n");/////////
-		ft_print_list(a);///////
-		printf("\n");///////////
-		printf("b:\n");/////////
-		ft_print_list(b);///////
-		printf("\n");///////////
-		ft_print_cost(b);///////
-		printf("\n");///////////
 		ft_destroy_list(&a);
 		ft_destroy_list(&b);
 	}
@@ -68,7 +51,8 @@ static t_list	*ft_create_a(char **input_a)
 
 static void	ft_is_easy_to_solve(t_list *list)
 {
-	ft_is_sorted(list);
+	if (ft_is_sorted(list))
+		exit(EXIT_SUCCESS);
 	if (list->size < 4)
 	{
 		if (list->size == 2)
@@ -79,41 +63,17 @@ static void	ft_is_easy_to_solve(t_list *list)
 	}
 }
 
-static void	ft_is_sorted(t_list *list)
+int	ft_is_sorted(t_list *list)
 {
-	t_node *current;
+	t_node	*current;
 
 	current = list->begin;
 	while (current->next != NULL)
 	{
 		if (current->val > current->next->val)
-			return ;
+			return (0);
 		else
 			current = current->next;
 	}
-	exit(EXIT_SUCCESS);
+	return (1);
 }
-
-void	ft_print_list(t_list *list)///////////////
-{
-	t_node	*aux;
-
-	aux = list->begin;
-	while (aux != NULL)
-	{
-		printf("%d , %d , %d , %d |", aux->target_pos, aux->pos, aux->index, aux->val);
-		aux = aux->next;
-	}
-}////////////////
-
-void	ft_print_cost(t_list *list)///////////////
-{
-	t_node	*aux;
-
-	aux = list->begin;
-	while (aux != NULL)
-	{
-		printf("    %d , %d     |", aux->cost_a, aux->cost_b);
-		aux = aux->next;
-	}
-}////////////////

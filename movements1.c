@@ -6,11 +6,14 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:51:21 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/22 11:15:21 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:23:24 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push_swap.h"
+
+static void	ft_pushs_moviments_in_l1(t_list *l1);
+static void	ft_pushs_moviments_in_l2(t_list *l2, t_node *node);
 
 void	ft_swap(t_list *list, char stack)
 {
@@ -38,21 +41,8 @@ void	ft_push(t_list *l1, t_list *l2, char stack)
 	t_node	*node;
 
 	node = l1->begin;
-	if (l1->begin->next)
-	{
-		l1->begin = l1->begin->next;
-		l1->begin->prev = NULL;
-	}
-	else
-		l1->begin = NULL;
-	if (l2->begin)
-	{
-		node->next = l2->begin;
-		l2->begin->prev = node;
-	}
-	else
-		node->next = NULL;
-	l2->begin = node;
+	ft_pushs_moviments_in_l1(l1);
+	ft_pushs_moviments_in_l2(l2, node);
 	if (stack == 'a')
 		write(STDOUT_FILENO, "pa\n", 3);
 	else
@@ -61,26 +51,28 @@ void	ft_push(t_list *l1, t_list *l2, char stack)
 	l2->size++;
 }
 
-void	ft_rotate(t_list *list, char stack)
+static void	ft_pushs_moviments_in_l1(t_list *l1)
 {
-	t_node	*node;
-
-	node = list->begin;
-	list->begin = list->begin->next;
-	list->begin->prev = NULL;
-	list->end->next = node;
-	node->prev = list->end;
-	node->next = NULL;
-	list->end = node;
-	if (stack == 'a')
-		write(STDOUT_FILENO, "ra\n", 3);
-	else if (stack == 'b')
-		write(STDOUT_FILENO, "rb\n", 3);
+	if (l1->begin->next)
+	{
+		l1->begin = l1->begin->next;
+		l1->begin->prev = NULL;
+	}
+	else
+		l1->begin = NULL;
 }
 
-void	ft_rr(t_list *a, t_list*b)
+static void	ft_pushs_moviments_in_l2(t_list *l2, t_node *node)
 {
-	ft_rotate(a, 'r');
-	ft_rotate(b, 'r');
-	write(STDOUT_FILENO, "rr\n", 3);
+	if (l2->begin)
+	{
+		node->next = l2->begin;
+		l2->begin->prev = node;
+	}
+	else
+	{
+		node->next = NULL;
+		l2->end = node;
+	}
+	l2->begin = node;
 }

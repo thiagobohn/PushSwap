@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:22:21 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/16 13:26:06 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:10:52 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_assigning_indexes(t_list *list)
 	node = list->begin;
 	while (node->index != -1)
 		node = node ->next;
-	node->index = i;	
+	node->index = i;
 }
 
 static int	ft_find_next_min(t_list *list)

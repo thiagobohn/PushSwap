@@ -6,7 +6,7 @@
 /*   By: tbohn-co <tbohn-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:55:58 by tbohn-co          #+#    #+#             */
-/*   Updated: 2024/05/22 15:18:14 by tbohn-co         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:13:54 by tbohn-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_sort3(t_list *list)
 	if (n1 < n2 && n2 > n3)
 	{
 		ft_reverse_rotate(list, 'a');
-		if(n1 < n3)
+		if (n1 < n3)
 			ft_swap(list, 'a');
 	}
 	else
@@ -48,11 +48,25 @@ void	ft_push_swap(t_list *a, t_list *b)
 {
 	while (a->size > 3)
 		ft_push(a, b, 'b');
-	ft_sort3(a);
-	ft_calculat_position(a);
-	ft_calculat_position(b);
-	ft_define_targets(a, b);
-	ft_calculating_costs(a, b);
+	if (!ft_is_sorted(a))
+		ft_sort3(a);
+	while (b->size > 0)
+	{
+		ft_calculat_position(a);
+		ft_calculat_position(b);
+		ft_define_targets(a, b);
+		ft_execute_action_sequence(a, b, ft_calculating_costs(a, b));
+	}
+	if (a->begin->index != 1 && a->begin->pos < a->size / 2)
+	{
+		while (a->begin->index != 1)
+			ft_reverse_rotate(a, 'a');
+	}
+	else
+	{
+		while (a->begin->index != 1)
+			ft_rotate(a, 'a');
+	}
 }
 
 static void	ft_calculat_position(t_list *list)
@@ -72,7 +86,7 @@ static void	ft_calculat_position(t_list *list)
 static void	ft_define_targets(t_list *a, t_list *b)
 {
 	t_node	*node;
-	
+
 	node = b->begin;
 	while (node)
 	{
@@ -96,7 +110,7 @@ static int	ft_find_target_position(t_node *node, int index)
 			target_pos = node->pos;
 			next_index = node->index;
 		}
-		else if(next_index == INT_MAX && node->index < lowest_index)
+		else if (next_index == INT_MAX && node->index < lowest_index)
 		{
 			target_pos = node->pos;
 			lowest_index = node->index;
